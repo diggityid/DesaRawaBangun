@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AdminAboutController;
+use App\Http\Controllers\AdminPegawaiController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +20,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/pegawai', [PegawaiController::class, 'pegawai'])->name('pegawai');
+
+
+Route::prefix('/admin')->middleware(['auth', 'verified'])->group(function (){
+    Route::get('/about', [AdminAboutController::class, 'about'])->name('about-form');
+    Route::post('/about', [AdminAboutController::class, 'doAbout'])->name('about-input');
+    
+    Route::get('/pegawai', [AdminPegawaiController::class, 'pegawai'])->name('pegawai-form');
+    Route::post('/pegawai', [AdminPegawaiController::class], 'doPegawai')->name('pegawai-input');
 });
+
+Route::get('/about', [AboutController::class, 'about'])->name('about');
+
+Route::post('/admin/login', [UserController::class, 'doLogin']);
+Route::get('/admin/current', [UserController::class, 'curren']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

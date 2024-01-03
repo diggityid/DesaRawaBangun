@@ -11,6 +11,9 @@
 |
 */
 
+use App\Providers\AboutServiceProvider;
+use App\Providers\PegawaiServiceProvider;
+
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
@@ -40,6 +43,9 @@ $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     App\Exceptions\Handler::class
 );
+
+$app->register(AboutServiceProvider::class);
+$app->register(PegawaiServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
