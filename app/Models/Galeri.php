@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Pegawai extends Model
+class Galeri extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $tables = 'pegawais';
-    
+    protected $tables = 'galeris';
+
     protected $fillables = [
-        'name', 'images', 'jabatan', 'nip', 'riwayat_studi'
+        'title', 'images'
     ];
 }

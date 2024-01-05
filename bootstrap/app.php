@@ -13,6 +13,7 @@
 
 use App\Providers\AboutServiceProvider;
 use App\Providers\PegawaiServiceProvider;
+use App\Providers\PengumumanServiceProvider;
 
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
@@ -46,6 +47,7 @@ $app->singleton(
 
 $app->register(AboutServiceProvider::class);
 $app->register(PegawaiServiceProvider::class);
+$app->register(PengumumanServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

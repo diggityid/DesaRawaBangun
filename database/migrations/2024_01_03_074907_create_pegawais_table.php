@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pegawais', function (Blueprint $table) {
             $table->id();
             $table->text('name');
-            $table->text('image_profile')->nullable();
+            $table->text('images')->nullable();
             $table->text('jabatan')->nullable();
             $table->text('nip')->nullable();
             $table->text('riwayat_studi')->nullable();

@@ -26,33 +26,18 @@ class AdminAboutController extends Controller
     {
 
         $validate = $request->validate([
-            'intro' => 'require',
-            'visi' => 'require',
-            'misi' => 'require',
-            'history' => 'require'
+            'intro' => 'required',
+            'visi' => 'required',
+            'misi' => 'required',
+            'history' => 'required'
         ]);
 
-        $intro = $request->input('inputIntro');
-        $visi = $request->input('inputVisi');
-        $misi = $request->input('inputMisi');
-        $history = $request->input('inputHistory');
-
-        $visiJson = json_encode($visi);
-        $misiJson = json_encode($misi);
-
-        $input = [
-            'intro' => $intro,
-            'visi' => $visiJson,
-            'misi' => $misiJson,
-            'history' => $history,
-        ];
-
         if ($this->aboutService->checkAbout()) {
-            $this->aboutService->insertAbout($input);
+            $this->aboutService->insertAbout($validate);
 
             return redirect()->route('about');
         } else {
-            $this->aboutService->updateAbout($input);
+            $this->aboutService->updateAbout($validate);
 
             return redirect()->route('about');
         }

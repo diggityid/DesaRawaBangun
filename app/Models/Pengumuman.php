@@ -13,6 +13,6 @@ class Pengumuman extends Model
     protected $tables = 'pengumumen';
 
     protected $fillables = [
-      'title', 'image', 'detail'   
+      'title', 'images', 'detail'   
     ];
 }

@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class PengumumanController extends Controller
 {
-    public function home(): Response
+    function pengumuman(): Response
     {
         $user = Auth::user();
 
-    return response()->view('home', [
-            'user' => $user 
+        return response()->view('pengumuman', [
+            'user' => $user
         ]);
     }
 }

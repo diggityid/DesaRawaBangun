@@ -48,13 +48,10 @@ class AboutServiceImpl implements AboutService
                 'history' => null
             ];
         } else {
-            $visi = json_decode($result[0]->visi, true);
-            $misi = json_decode($result[0]->misi, true);
-
             return (object) [
                 'intro' => $result[0]->intro,
-                'visi' => $visi,
-                'misi' => $misi,
+                'visi' => $result[0]->visi,
+                'misi' => $result[0]->misi,
                 'history' => $result[0]->history
             ];
         }

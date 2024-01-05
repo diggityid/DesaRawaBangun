@@ -22,16 +22,11 @@
 
 <body>
     <header>
-        <div>
+
             {{-- <a href="{{ route('admin.office') }}">Office</a>
             <a href="{{ route('admin.agenda') }}">Agenda</a>
             <a href="{{ route('admin.about') }}">About</a> --}}
 
-            <form method="post" action="/admin/logout">
-                @csrf
-                <button class="w-15 btn btn-lg btn-danger" type="submit">Sign Out</button>
-            </form>
-        </div>
     </header>
 
     <h1>Welcome to about</h1>
@@ -46,36 +41,35 @@
 
 
     <div class="container-md border rounded p-3">
-        <form method="post" action="{{ route('about-input' )}}">
+        <form method="POST" action="{{ route('about-input') }}">
+            @csrf
             <div class="row mb-3">
                 <label for="intro" class="col-sm-2 col-form-label">Tetang Desa</label>
                 <div class="col-sm-10">
                     <textarea class="form-control" id="intro" name="intro" rows="3" value="{{ old('intro') }}"></textarea>
                     @error('intro')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="alert alert-danger">Kolom Tentang Desa Mohon Diisi</div>
                     @enderror
                 </div>
             </div>
 
-            <div class="row mb-3" id="visiWrapper">
-                <label for="visi" class="col-sm-2 col-form-label">Visi</label>
-                <div class="col-sm-10" class="field-wrapper">
+            <div class="row mb-3">
+                <label for="visi" class="col-sm-2 col-form-label">Visi Desa</label>
+                <div class="col-sm-10">
                     <textarea class="form-control" id="visi" name="visi" rows="3" value="{{ old('visi') }}"></textarea>
-                    <button class="remove-button">Hapus</button>
-                </div>
-                <div class="col-sm-10 offset-sm-2">
-                    <button id="addVisiButton" type="button">Tambah Visi</button>
+                    @error('visi')
+                    <div class="alert alert-danger">Kolom Visi Desa Mohon Diisi</div>
+                    @enderror
                 </div>
             </div>
 
-            <div class="row mb-3" id="misiWrapper">
-                <label for="misi" class="col-sm-2 col-form-label">Misi</label>
-                <div class="col-sm-10" class="field-wrapper">
+            <div class="row mb-3">
+                <label for="misi" class="col-sm-2 col-form-label">Misi Desa</label>
+                <div class="col-sm-10">
                     <textarea class="form-control" id="misi" name="misi" rows="3" value="{{ old('misi') }}"></textarea>
-                    <button class="remove-button">Hapus</button>
-                </div>
-                <div class="col-sm-10 offset-sm-2">
-                    <button id="addMisiButton" type="button">Tambah Misi</button>
+                    @error('misi')
+                    <div class="alert alert-danger">Kolom Visi Desa Mohon Diisi</div>
+                    @enderror
                 </div>
             </div>
 
@@ -84,7 +78,7 @@
                 <div class="col-sm-10">
                     <textarea class="form-control" id="history" name="history" rows="3" value="{{ old('history') }}"></textarea>
                     @error('history')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="alert alert-danger">Kolom Sejarah Desa Mohon Diisi</div>
                     @enderror
                 </div>
             </div>
@@ -138,7 +132,7 @@
         </table>
     </form> --}}
 
-    <script>
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             var addVisiButton = document.getElementById("addVisiButton");
             var visiWrapper = document.getElementById("visiWrapper");
@@ -194,7 +188,7 @@
         });
 
         
-    </script>
+    </script> --}}
 </body>
 
 </html>

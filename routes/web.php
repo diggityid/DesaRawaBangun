@@ -3,8 +3,11 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminAboutController;
 use App\Http\Controllers\AdminPegawaiController;
+use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +24,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/about', [AboutController::class, 'about'])->name('about');
 Route::get('/pegawai', [PegawaiController::class, 'pegawai'])->name('pegawai');
+Route::get('/pengumuman', [PengumumanController::class, 'pengumuman'])->name('pengumuman');
+Route::get('/download', [DownloadController::class, 'download'])->name('download');
+Route::get('/galeri', [GaleriController::class, 'galeri'])->name('galeri');
 
 
 Route::prefix('/admin')->middleware(['auth', 'verified'])->group(function (){
@@ -32,7 +39,7 @@ Route::prefix('/admin')->middleware(['auth', 'verified'])->group(function (){
     Route::post('/pegawai', [AdminPegawaiController::class], 'doPegawai')->name('pegawai-input');
 });
 
-Route::get('/about', [AboutController::class, 'about'])->name('about');
+
 
 Route::post('/admin/login', [UserController::class, 'doLogin']);
 Route::get('/admin/current', [UserController::class, 'curren']);

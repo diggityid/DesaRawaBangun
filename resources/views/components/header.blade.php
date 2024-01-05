@@ -45,11 +45,11 @@
                         Informasi Publik
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Pengumuman</a></li>
+                        <li><a class="dropdown-item" href="{{ route('pengumuman' )}}">Pengumuman</a></li>
                         <li><a class="dropdown-item" href="#">Agenda Desa</a></li>
-                        <li><a class="dropdown-item" href="#">Galeri Desa</a></li>
+                        <li><a class="dropdown-item" href="{{ route('galeri') }}">Galeri Desa</a></li>
                         <li><a class="dropdown-item" href="#">Berita Desa</a></li>
-                        <li><a class="dropdown-item" href="#">Download</a></li>
+                        <li><a class="dropdown-item" href="{{ route('download') }}">Download</a></li>
                     </ul>
                 </li>
             </ul>
@@ -64,8 +64,13 @@
                             {{ $user->name }}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profile.edit')}}">Profile</a></li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf <!-- Tambahkan token CSRF untuk melindungi form -->
+                                    <button class="dropdown-item" type="submit">Logout</button>
+                                </form>
+                            </li>
                         </ul>
                     </li>
                 </ul>
