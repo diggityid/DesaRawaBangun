@@ -34,12 +34,10 @@ class AdminAboutController extends Controller
 
         if ($this->aboutService->checkAbout()) {
             $this->aboutService->insertAbout($validate);
-
-            return redirect()->route('about');
         } else {
             $this->aboutService->updateAbout($validate);
-
-            return redirect()->route('about');
         }
+
+        return redirect()->route('about');
     }
 }

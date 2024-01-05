@@ -21,19 +21,39 @@ class AdminPegawaiController extends Controller
         return response()->view('admin.pegawai');
     }
 
-    public function doPegawai(Request $request)
+    public function insertPegawai(Request $request)
     {
 
         $validation  = $request->validate([
-            'name' => 'require',
+            'name' => 'required',
             'image_profile' => 'image|file|max:2048',
-            'nip' => 'require',
-            'pendidikan' => 'require'
+            'jabatan' => 'required',
+            'nip' => 'required',
+            'pendidikan' => 'required'
         ]);
 
-        $pendidikanJson = json_encode($validation['pendidikan']);
-        $validation['pendidikan'] = $pendidikanJson;
-
         $this->pegawaiService->insertPegawai($validation);
+
+    return redirect()->action([PegawaiController::class, 'pegawai']);
+    }
+
+    public function updatePegawai(Request $request, string $id){
+
+        $validation  = $request->validate([
+            'name' => 'required',
+            'image_profile' => 'image|file|max:2048',
+            'jabatan' => 'required',
+            'nip' => 'required',
+            'pendidikan' => 'required'
+        ]);
+
+        if($this->pegawaiService->checkPegawai($id)){
+            $this->pegawaiService->updatePegawai($validation, $id);
+        }
+    }
+
+    public function deletePegawai(string $id)
+    {
+        $this->pegawaiService->removePegawai($id);        
     }
 }

@@ -55,16 +55,5 @@ class AboutServiceImpl implements AboutService
                 'history' => $result[0]->history
             ];
         }
-
-        // if(empty($result)){
-        //     return (object) [
-        //         'intro' => null,
-        //         'visi' => null,
-        //         'misi' => null,
-        //         'history' => null
-        //     ];
-        // }
-
-
     }
 }

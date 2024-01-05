@@ -48,7 +48,7 @@
                 <div class="col-sm-10">
                     <textarea class="form-control" id="intro" name="intro" rows="3" value="{{ old('intro') }}"></textarea>
                     @error('intro')
-                    <div class="alert alert-danger">Kolom Tentang Desa Mohon Diisi</div>
+                    <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
@@ -58,7 +58,7 @@
                 <div class="col-sm-10">
                     <textarea class="form-control" id="visi" name="visi" rows="3" value="{{ old('visi') }}"></textarea>
                     @error('visi')
-                    <div class="alert alert-danger">Kolom Visi Desa Mohon Diisi</div>
+                    <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
@@ -68,7 +68,7 @@
                 <div class="col-sm-10">
                     <textarea class="form-control" id="misi" name="misi" rows="3" value="{{ old('misi') }}"></textarea>
                     @error('misi')
-                    <div class="alert alert-danger">Kolom Visi Desa Mohon Diisi</div>
+                    <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
@@ -78,7 +78,7 @@
                 <div class="col-sm-10">
                     <textarea class="form-control" id="history" name="history" rows="3" value="{{ old('history') }}"></textarea>
                     @error('history')
-                    <div class="alert alert-danger">Kolom Sejarah Desa Mohon Diisi</div>
+                    <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
             </div>

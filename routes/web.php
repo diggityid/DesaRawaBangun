@@ -36,7 +36,9 @@ Route::prefix('/admin')->middleware(['auth', 'verified'])->group(function (){
     Route::post('/about', [AdminAboutController::class, 'doAbout'])->name('about-input');
     
     Route::get('/pegawai', [AdminPegawaiController::class, 'pegawai'])->name('pegawai-form');
-    Route::post('/pegawai', [AdminPegawaiController::class], 'doPegawai')->name('pegawai-input');
+    Route::post('/pegawai', [AdminPegawaiController::class, 'insertPegawai'])->name('pegawai-insert');
+    Route::post('/pegawai/{$id}/update', [AdminPegawaiController::class, 'updatePegawai'])->name('pegawai-update');
+    Route::post('/pegawai/{$id}/delete', [AdminPegawaiController::class, 'deletePegawai'])->name('pegawai-delete');
 });
 
 
