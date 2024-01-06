@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminAboutController;
+use App\Http\Controllers\AdminDownloadController;
 use App\Http\Controllers\AdminPegawaiController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\GaleriController;
@@ -39,6 +40,9 @@ Route::prefix('/admin')->middleware(['auth', 'verified'])->group(function (){
     Route::post('/pegawai', [AdminPegawaiController::class, 'insertPegawai'])->name('pegawai-insert');
     Route::post('/pegawai/{$id}/update', [AdminPegawaiController::class, 'updatePegawai'])->name('pegawai-update');
     Route::post('/pegawai/{$id}/delete', [AdminPegawaiController::class, 'deletePegawai'])->name('pegawai-delete');
+
+    Route::get('/download', [AdminDownloadController::class, 'download'])->name('admin-form');
+    Route::post('/download', [AdminDownloadController::class, 'insertDownload'])->name('admin-insert');
 });
 
 
