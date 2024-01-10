@@ -16,6 +16,10 @@
     @slot('user', $user)
     @endcomponent
 
+    @if($user)
+    <a href="{{ route('about-form') }}">Ubah Data</a>
+    @endif
+
     <h1>Tentang Desa Rawa Bangun</h1><br>
     <p>{{ $content['intro'] ?? '' }}</p>
     <hr>

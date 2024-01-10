@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Services\AboutService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class AboutController extends Controller
 {
@@ -20,7 +21,7 @@ class AboutController extends Controller
     public function about(): Response
     {
 
-        $result = $this->aboutService->showAbout();
+        $result = $this->aboutService->show();
         $user = Auth::user();
 
         $content = [
@@ -35,5 +36,31 @@ class AboutController extends Controller
             'content' => $content
         ]);
 
+    }
+
+    public function admin(): Response
+    {
+        return response()->view('admin.about', [
+
+        ]);
+    }
+
+    public function store(Request $request): Response | RedirectResponse
+    {
+
+        $validate = $request->validate([
+            'intro' => 'required',
+            'visi' => 'required',
+            'misi' => 'required',
+            'history' => 'required'
+        ]);
+
+        if ($this->aboutService->check()) {
+            $this->aboutService->insert($validate);
+        } else {
+            $this->aboutService->update($validate);
+        }
+
+        return redirect()->route('about');
     }
 }

@@ -4,8 +4,9 @@ namespace App\Services;
 
 interface DownloadService
 {
-    public function getDownload(string $id);
-    public function insertDownload(array $input);
-    public function updateDownload(array $input, string $id);
-    public function removeDownload(string $id);
+    public function get(string $id);
+    public function insert(array $input);
+    public function update(array $input, string $id);
+    public function remove(string $id);
+    public function show();
 }

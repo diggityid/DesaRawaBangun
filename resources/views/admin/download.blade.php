@@ -12,22 +12,10 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
 
-    <style>
-        tr,
-        td {
-            padding: 5px;
-        }
-    </style>
 </head>
 
 <body>
-    <header>
-
-            {{-- <a href="{{ route('admin.office') }}">Office</a>
-            <a href="{{ route('admin.agenda') }}">Agenda</a>
-            <a href="{{ route('admin.about') }}">About</a> --}}
-
-    </header>
+    @include('components.header', ['user' => $user, 'add' => $user ? 'download-form' : ''])
 
     @if(session($message ?? '') != null)
     <div class="row">
@@ -44,7 +32,7 @@
             <div class="row mb-3">
                 <label for="title" class="col-sm-2 col-form-label">Nama File</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" id="title" name="title" rows="3" value="{{ old('title') }}"></textarea>
+                    <input class="form-control" type="text" name="title" id="title" value="{{ old('title') }}">
                     @error('title')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -71,7 +59,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Ubah</button>
+            <button type="submit" class="btn btn-primary">Tambah</button>
         </form>
     </div>
 </body>

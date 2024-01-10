@@ -16,7 +16,7 @@ class PegawaiServiceImpl implements PegawaiService
         $this->pegawaiModel = new Pegawai();
     }
 
-    function checkPegawai(string $id)
+    function check(string $id)
     {
         $check = DB::select("SELECT id FROM pegawais WHERE id = $id");
         if (empty($check)) {
@@ -25,17 +25,17 @@ class PegawaiServiceImpl implements PegawaiService
         return true;
     }
 
-    function insertPegawai(array $user)
+    function insert(array $user)
     {
         $this->pegawaiModel->create($user);
     }
 
-    function updatePegawai(array $user, string $id)
+    function update(array $user, string $id)
     {
         $this->pegawaiModel->where('id', $id)->update($user);
     }
 
-    function showPegawai()
+    function show()
     {
         $result = $this->pegawaiModel->get();
 
@@ -65,7 +65,7 @@ class PegawaiServiceImpl implements PegawaiService
         return $result;
     }
 
-    function removePegawai(string $id)
+    function remove(string $id)
     {
         $this->pegawaiModel->where('id', $id)->delete();
     }

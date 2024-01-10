@@ -15,6 +15,7 @@
 </head>
 
 <body>
+    @include('components.header', ['user' => $user, 'add' => $user ? 'pegawai-form' : ''])
 
     <h3>Pendidikan</h3>
 

@@ -4,10 +4,10 @@ namespace App\Services;
 
 interface PegawaiService
 {
-    function checkPegawai(string $id);
-    function insertPegawai(array $user);
-    function updatePegawai(array $user, string $id);
+    function check(string $id);
+    function insert(array $user);
+    function update(array $user, string $id);
     function showAll();
-    function showPegawai();
-    function removePegawai(string $id);
+    function show();
+    function remove(string $id);
 }

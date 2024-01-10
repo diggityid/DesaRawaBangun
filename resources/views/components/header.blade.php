@@ -1,7 +1,5 @@
-@props(['user'])
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
@@ -59,8 +57,14 @@
 
 
             @if($user)
-            <div class="d-flex">
+            <div style="margin-left: auto;" class="d-flex">
                 <ul class="navbar-nav me-2">
+                    @if($add)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route($add) }}">Tambah Data</a>
+                    </li>
+                    @endif
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -70,7 +74,8 @@
                             <li><a class="dropdown-item" href="{{ route('profile.edit')}}">Profile</a></li>
                             <li>
                                 <form action="{{ route('logout') }}" method="POST">
-                                    @csrf <!-- Tambahkan token CSRF untuk melindungi form -->
+                                    @csrf
+                                    <!-- Tambahkan token CSRF untuk melindungi form -->
                                     <button class="dropdown-item" type="submit">Logout</button>
                                 </form>
                             </li>

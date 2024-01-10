@@ -1,10 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
-use App\Http\Controllers\AdminAboutController;
-use App\Http\Controllers\AdminDownloadController;
 use App\Http\Controllers\AdminLembagaController;
-use App\Http\Controllers\AdminPegawaiController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\HomeController;
@@ -35,16 +32,16 @@ Route::get('/galeri', [GaleriController::class, 'galeri'])->name('galeri');
 Route::get('/lembaga', [LembagaController::class, 'lembaga'])->name('lembaga');
 
 Route::prefix('/admin')->middleware(['auth', 'verified'])->group(function () {
-    Route::get('/about', [AdminAboutController::class, 'about'])->name('about-form');
-    Route::post('/about', [AdminAboutController::class, 'doAbout'])->name('about-input');
+    Route::get('/about', [AboutController::class, 'admin'])->name('about-form');
+    Route::post('/about', [AboutController::class, 'store'])->name('about-input');
 
-    Route::get('/pegawai', [AdminPegawaiController::class, 'pegawai'])->name('pegawai-form');
-    Route::post('/pegawai', [AdminPegawaiController::class, 'insertPegawai'])->name('pegawai-insert');
-    Route::post('/pegawai/{$id}/update', [AdminPegawaiController::class, 'updatePegawai'])->name('pegawai-update');
-    Route::post('/pegawai/{$id}/delete', [AdminPegawaiController::class, 'deletePegawai'])->name('pegawai-delete');
+    Route::get('/pegawai', [PegawaiController::class, 'admin'])->name('pegawai-form');
+    Route::post('/pegawai', [PegawaiController::class, 'store'])->name('pegawai-insert');
+    Route::post('/pegawai/{$id}/update', [PegawaiController::class, 'update'])->name('pegawai-update');
+    Route::post('/pegawai/{$id}/delete', [PegawaiController::class, 'delete'])->name('pegawai-delete');
 
-    Route::get('/download', [AdminDownloadController::class, 'download'])->name('admin-form');
-    Route::post('/download', [AdminDownloadController::class, 'insertDownload'])->name('admin-insert');
+    Route::get('/download', [DownloadController::class, 'admin'])->name('download-form');
+    Route::post('/download', [DownloadController::class, 'store'])->name('download-insert');
 
     Route::get('/lembaga', [AdminLembagaController::class, 'lembaga'])->name('lembaga-form');
     Route::post('/lembaga', [AdminLembagaController::class, 'insertLembaga'])->name('lembaga-insert');

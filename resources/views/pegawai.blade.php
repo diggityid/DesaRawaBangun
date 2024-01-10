@@ -12,9 +12,7 @@
 </head>
 
 <body>
-    @component('components.header')
-    @slot('user', $user)
-    @endcomponent
+    @include('components.header', ['user' => $user, 'add' => $user ? 'pegawai-form' : ''])
 
 
     <h3>Pegawai Desa</h3>

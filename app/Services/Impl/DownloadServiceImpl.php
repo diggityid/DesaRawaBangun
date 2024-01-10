@@ -13,23 +13,28 @@ class DownloadServiceImpl implements DownloadService
         $this->downloadModel = new Download();
     }
 
-    public function getDownload(string $id)
+    public function get(string $id)
     {
         
     }
 
-    public function insertDownload(array $input)
+    public function insert(array $input)
     {
         $this->downloadModel->create($input);
     }
 
-    public function updateDownload(array $input, string $id)
+    public function update(array $input, string $id)
     {
         $this->downloadModel->where('id', $id)->update($input);
     }
 
-    public function removeDownload(string $id)
+    public function remove(string $id)
     {
         $this->downloadModel->where('id', $id)->delete();
+    }
+
+    public function show()
+    {
+        
     }
 }

@@ -6,13 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Download Desa Rawa Bangun</title>
-
 </head>
 
 <body>
-    @component('components.header')
-    @slot('user', $user)
-    @endcomponent
+    @include('components.header', ['user' => $user, 'add' => $user ? 'download-form' : ''])
 
 
     <h3>Download</h3>
