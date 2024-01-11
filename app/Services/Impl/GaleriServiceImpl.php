@@ -31,7 +31,7 @@ class GaleriServiceImpl implements GaleriService
 
     public function showAll()
     {
-        $result = DB::select('SELECT * FROM galeris');
+        $result = $this->galeriModel->all();
 
         return $result;
     }
@@ -43,5 +43,6 @@ class GaleriServiceImpl implements GaleriService
 
     public function remove(string $id)
     {
+        $this->galeriModel->where('id', $id)->delete();
     }
 }

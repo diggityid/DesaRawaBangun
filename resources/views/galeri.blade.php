@@ -23,6 +23,7 @@
                 @if($user)
                     <a class="btn btn-primary" href="{{ route('galeri-form-edit', ['id' => $item->id]) }}">Ubah</a>
                     <form action="{{ route('galeri-delete', ['id' => $item->id]) }}" method="post">
+                        @csrf
                         <button class="btn btn-danger" type="submit">Hapus</button>
                     </form>
                 @endif

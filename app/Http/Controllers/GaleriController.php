@@ -6,6 +6,7 @@ use App\Services\GaleriService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class GaleriController extends Controller
 {
@@ -73,5 +74,24 @@ class GaleriController extends Controller
             'title' => 'required',
             'images' => 'required|image|file|max:2048'
         ]);
+
+        if ($request->file('images')) {
+            if ($request->input('oldImage')) {
+                Storage::delete($request->input('oldImage'));
+            }
+
+            $validation['images'] = $request->file('images')->store('post-images-galeri');
+        }
+
+        $this->galeriService->update($validation, $id);
+
+        return redirect()->action([GaleriController::class, 'galeri']);
+    }
+
+    public function delete(string $id)
+    {
+        $this->galeriService->remove($id);
+
+        return redirect()->action([GaleriController::class, 'galeri']);
     }
 }

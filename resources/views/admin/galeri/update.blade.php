@@ -35,6 +35,8 @@
             <div class="row mb-3">
                 <label for="images" class="col-sm-2 col-form-label">Masukan Foto</label>
                 <div class="col-sm-10">
+                    <img class="visually-hidden" src="{{ asset('storage/' . $content[0]->images) }}" name='oldImage' id="oldImage" alt="...">
+                    <input type="hidden" name="oldImage" id="oldImage" value="{{ $content[0]->images }}">
                     <input class="form-control @error('images') is-invalid @enderror" type="file"
                         id="images" name="images">
                     @error('images')
