@@ -12,13 +12,7 @@
 </head>
 
 <body>
-    @component('components.header')
-    @slot('user', $user)
-    @endcomponent
-
-    @if($user)
-    <a href="{{ route('about-form') }}">Ubah Data</a>
-    @endif
+    @include('components.header', ['user' => $user, 'add' => $user ? 'about-form-create' : '', 'text' => 'Ubah'])
 
     <h1>Tentang Desa Rawa Bangun</h1><br>
     <p>{{ $content['intro'] ?? '' }}</p>

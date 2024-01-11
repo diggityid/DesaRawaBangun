@@ -18,30 +18,31 @@ class AboutController extends Controller
         $this->aboutService = $aboutService;
     }
 
+    public function user()
+    {
+        $user = Auth::user();
+
+        return $user;
+    }
+
     public function about(): Response
     {
 
         $result = $this->aboutService->show();
-        $user = Auth::user();
-
-        $content = [
-            'intro' => $result->intro ?? null,
-            'visi' => $result->visi ?? null,
-            'misi' => $result->misi ?? null, 
-            'history' => $result->history ?? null
-        ];
 
         return response()->view('about', [
-            'user' => $user,
-            'content' => $content
+            'user' => self::user(),
+            'content' => $result
         ]);
-
     }
 
-    public function admin(): Response
-    {
-        return response()->view('admin.about', [
+    public function create(): Response
+    {   
+        $result = $this->aboutService->show();
 
+        return response()->view('admin.about.update', [
+            'user' => self::user(),
+            'content' => $result
         ]);
     }
 

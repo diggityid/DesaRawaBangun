@@ -11,12 +11,12 @@ class PegawaiServiceImpl implements PegawaiService
 
     private Pegawai $pegawaiModel;
 
-    function __construct()
+    public function __construct()
     {
         $this->pegawaiModel = new Pegawai();
     }
 
-    function check(string $id)
+    public function check(string $id)
     {
         $check = DB::select("SELECT id FROM pegawais WHERE id = $id");
         if (empty($check)) {
@@ -25,47 +25,29 @@ class PegawaiServiceImpl implements PegawaiService
         return true;
     }
 
-    function insert(array $user)
+    public function insert(array $user)
     {
         $this->pegawaiModel->create($user);
     }
 
-    function update(array $user, string $id)
+    public function update(array $user, string $id)
     {
         $this->pegawaiModel->where('id', $id)->update($user);
     }
 
-    function show()
+    public function show(string $id)
     {
-        $result = $this->pegawaiModel->get();
-
-        if (count($result) == 0) {
-            return (object) [
-                'name' => null,
-                'image_profile' => null,
-                'jabatan' => null,
-                'nip' => null,
-                'pendidikan' => null
-            ];
-        } else {
-            return (object) [
-                'name' => $result[0]->name,
-                'image_profile' => $result[0]->image_profile,
-                'jabatan' => $result[0]->jabatan,
-                'nip' => $result[0]->nip,
-                'pendidikan' => $result[0]->pendidikan
-            ];
-        }
+        return $this->pegawaiModel->where('id', $id)->get();
     }
 
-    function showAll()
+    public function showAll()
     {
         $result = DB::select("SELECT * FROM pegawais");
 
         return $result;
     }
 
-    function remove(string $id)
+    public function remove(string $id)
     {
         $this->pegawaiModel->where('id', $id)->delete();
     }

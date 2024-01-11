@@ -12,7 +12,7 @@ class Galeri extends Model
 
     protected $tables = 'galeris';
 
-    protected $fillables = [
+    protected $fillable = [
         'title', 'images'
     ];
 }

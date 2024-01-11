@@ -12,20 +12,16 @@
 </head>
 
 <body>
-    @include('components.header', ['user' => $user, 'add' => $user ? 'galeri-form-create' : '', 'text' => 'Tambah'])
+    @include('components.header', ['user' => $user, 'add' => $user ? 'pegawai-form-create' : '', 'text' => 'Tambah'])
 
     <div class="d-flex justify-content-around">
         @foreach($content as $item)
-        <div class="card mb-3">
+        <div class="card mb-3" onclick="window.location.href='{{ route('pegawai', ['id' => $item->id]) }}'">
             <img src="{{ asset('storage/' . $item->images)}}" class="card-img-top"style="max-width: 540px;" alt="...">
             <div class="card-body">
-                <h5 class="card-title">{{ $item->title ?? null }}</h5>
-                @if($user)
-                    <a class="btn btn-primary" href="{{ route('galeri-form-edit', ['id' => $item->id]) }}">Ubah</a>
-                    <form action="{{ route('galeri-delete', ['id' => $item->id]) }}" method="post">
-                        <button class="btn btn-danger" type="submit">Hapus</button>
-                    </form>
-                @endif
+                <h5 class="card-title">{{ $item->name ?? null }}</h5>
+                <p class="card-text"></p>
+                <p class="card-text"><small class="text-body-secondary">{{ $item->jabatan }}</small></p>
             </div>
         </div>
         @endforeach

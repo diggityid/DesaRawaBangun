@@ -40,20 +40,11 @@ class AboutServiceImpl implements AboutService
     {
         $result = $this->aboutModel->get();
 
-        if (count($result) == 0) {
-            return (object) [
-                'intro' => null,
-                'visi' => null,
-                'misi' => null,
-                'history' => null
-            ];
-        } else {
-            return (object) [
-                'intro' => $result[0]->intro,
-                'visi' => $result[0]->visi,
-                'misi' => $result[0]->misi,
-                'history' => $result[0]->history
-            ];
-        }
+        return [
+            'intro' => $result[0]->intro ?? null,
+            'visi' => $result[0]->visi  ?? null,
+            'misi' => $result[0]->misi  ?? null,
+            'history' => $result[0]->history  ?? null
+        ];
     }
 }

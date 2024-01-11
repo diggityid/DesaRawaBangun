@@ -4,10 +4,10 @@ namespace App\Services;
 
 interface PegawaiService
 {
-    function check(string $id);
-    function insert(array $user);
-    function update(array $user, string $id);
-    function showAll();
-    function show();
-    function remove(string $id);
+    public function check(string $id);
+    public function insert(array $user);
+    public function update(array $user, string $id);
+    public function showAll();
+    public function show(string $id);
+    public function remove(string $id);
 }

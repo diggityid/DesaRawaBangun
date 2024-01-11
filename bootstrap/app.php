@@ -13,6 +13,7 @@
 
 use App\Providers\AboutServiceProvider;
 use App\Providers\DownloadServiceProvider;
+use App\Providers\GaleriServiceProvider;
 use App\Providers\PegawaiServiceProvider;
 use App\Providers\PengumumanServiceProvider;
 
@@ -48,6 +49,7 @@ $app->singleton(
 
 $app->register(AboutServiceProvider::class);
 $app->register(PegawaiServiceProvider::class);
+$app->register(GaleriServiceProvider::class);
 $app->register(PengumumanServiceProvider::class);
 $app->register(DownloadServiceProvider::class);
 

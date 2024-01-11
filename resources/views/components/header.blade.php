@@ -33,7 +33,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Stuktur Desa</a></li>
-                        <li><a class="dropdown-item" href="{{ route('pegawai') }}">Perangkat Desa</a></li>
+                        <li><a class="dropdown-item" href="{{ route('perangkat-desa') }}">Perangkat Desa</a></li>
                         <li><a class="dropdown-item" href="{{ route('lembaga') }}">Lembaga Desa</a></li>
                     </ul>
                 </li>
@@ -59,11 +59,12 @@
             @if($user)
             <div style="margin-left: auto;" class="d-flex">
                 <ul class="navbar-nav me-2">
-                    @if($add)
+                    @if(isset($add))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route($add) }}">Tambah Data</a>
+                        <a class="nav-link" href="{{ route($add) }}">{{ $text }} Data</a>
                     </li>
                     @endif
+
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"

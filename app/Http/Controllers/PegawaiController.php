@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Services\PegawaiService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PegawaiController extends Controller
 {
@@ -17,24 +18,37 @@ class PegawaiController extends Controller
         $this->pegawaiService = $pegawaiService;
     }
 
-    private function check()
+    private function user()
     {
         $user = Auth::user();
 
         return $user;
     }
 
-    public function pegawai(): Response
+    public function perangkat(): Response
     {
-        return response()->view('pegawai', [
-            'user' => self::check()
+        $result = $this->pegawaiService->showAll();
+
+        return response()->view('perangkat', [
+            'user' => $this->user(),
+            'content' => $result
         ]);
     }
 
-    public function admin(): Response
+    public function pegawai(string $id): Response
     {
-        return response()->view('admin.pegawai', [
-            'user' => self::check()
+        $result = $this->pegawaiService->show($id);
+
+        return response()->view('pegawai', [
+            'user' => $this->user(),
+            'content' => $result
+        ]);
+    }
+
+    public function create(): Response
+    {
+        return response()->view('admin.pegawai.create', [
+            'user' => $this->user()
         ]);
     }
 
@@ -43,18 +57,33 @@ class PegawaiController extends Controller
 
         $validation  = $request->validate([
             'name' => 'required',
-            'image_profile' => 'image|file|max:2048',
+            'images' => 'required|image|file|max:2048',
             'jabatan' => 'required',
             'nip' => 'required',
-            'pendidikan' => 'required'
+            'riwayat_studi' => 'required'
         ]);
+
+        if ($request->file('images')) {
+            $validation['images'] = $request->file('images')->store('post-images-pegawai');
+        }
 
         $this->pegawaiService->insert($validation);
 
-    return redirect()->action([PegawaiController::class, 'pegawai']);
+        return redirect()->action([PegawaiController::class, 'pegawai']);
     }
 
-    public function update(Request $request, string $id){
+    public function edit(string $id)
+    {
+        $result = $this->pegawaiService->show($id);
+
+        return response()->view('admin.pegawai.update', [
+            'user' => $this->user(),
+            'content' => $result
+        ]);
+    }
+
+    public function update(Request $request, string $id)
+    {
 
         $validation  = $request->validate([
             'name' => 'required',
@@ -64,13 +93,16 @@ class PegawaiController extends Controller
             'pendidikan' => 'required'
         ]);
 
-        if($this->pegawaiService->check($id)){
+        $getPath = $this->pegawaiService->show($id);
+
+        if($request->file('images')){
+            Storage::delete('storage/' . $getPath[0]->images_profile);
             $this->pegawaiService->update($validation, $id);
         }
     }
 
     public function delete(string $id)
     {
-        $this->pegawaiService->remove($id);        
+        $this->pegawaiService->remove($id);
     }
 }
