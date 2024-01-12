@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('lembagas', function (Blueprint $table) {
             $table->id();
             $table->text('name')->nullable();
-            $table->text('image_profile')->nullable();
+            $table->text('images')->nullable();
             $table->text('singkatan')->nullable();
             $table->text('dasar_hukum')->nullable();
             $table->text('alamat')->nullable();
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->longText('visi')->nullable();
             $table->longText('misi')->nullable();
             $table->longText('tugas')->nullable();
+            $table->longText('fungsi')->nullable();
             $table->longText('pengurus')->nullable();
             $table->softDeletes();
             $table->timestamps();

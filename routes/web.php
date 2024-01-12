@@ -28,14 +28,30 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/about', [AboutController::class, 'about'])->name('about');
+
+//Perangkat Desa
 Route::get('/perangkat-desa', [PegawaiController::class, 'perangkat'])->name('perangkat-desa');
 Route::get('/pegawai/{id}', [PegawaiController::class, 'pegawai'])->name('pegawai');
+
+//Pengumuman
 Route::get('/pengumuman', [PengumumanController::class, 'pengumuman'])->name('pengumuman');
+Route::get('/pengumuman/{id}', [PengumumanController::class, 'show'])->name('pengumuman-show');
+
 Route::get('/download', [DownloadController::class, 'download'])->name('download');
 Route::get('/galeri', [GaleriController::class, 'galeri'])->name('galeri');
+
+//Lembaga
 Route::get('/lembaga', [LembagaController::class, 'lembaga'])->name('lembaga');
+Route::get('/lembaga/{id}', [LembagaController::class, 'show'])->name('lembaga-show');
+
+//Berita
 Route::get('/berita', [BeritaController::class, 'berita'])->name('berita');
+Route::get('/berita/{id}', [BeritaController::class, 'show'])->name('berita-show');
+
+//agenda
 Route::get('/agenda', [AgendaController::class, 'agenda'])->name('agenda');
+Route::get('/agenda/{id}', [AgendaController::class, 'show'])->name('agenda-show');
+
 Route::get('/geografis', [GeografisController::class, 'geografis'])->name('geografis');
 Route::get('/demografis', [DemografisController::class, 'demografis'])->name('demografis');
 
@@ -65,7 +81,6 @@ Route::prefix('/admin')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/pengumuman/update/{id}', [PengumumanController::class, 'edit'])->name('pengumuman-form-edit');
     Route::post('pengumuman/update/{id}', [PengumumanController::class, 'update'])->name('pengumuman-update');
     Route::post('/pengumuman/delete/{id}', [PengumumanController::class, 'delete'])->name(('pengumuman-delete'));
-    Route::get('/pengumuman/{id}', [PengumumanController::class, 'show'])->name('pengumuman-show');
 
     //Berita
     Route::get('/berita', [BeritaController::class, 'create'])->name('berita-form-create');
@@ -73,7 +88,6 @@ Route::prefix('/admin')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/berita/update/{id}', [BeritaController::class, 'edit'])->name('berita-form-edit');
     Route::post('berita/update/{id}', [BeritaController::class, 'update'])->name('berita-update');
     Route::post('/berita/delete/{id}', [BeritaController::class, 'delete'])->name(('berita-delete'));
-    Route::get('/berita/{id}', [BeritaController::class, 'show'])->name('berita-show');
 
     //Agenda
     Route::get('/agenda', [AgendaController::class, 'create'])->name('agenda-form-create');
@@ -81,15 +95,17 @@ Route::prefix('/admin')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/agenda/update/{id}', [AgendaController::class, 'edit'])->name('agenda-form-edit');
     Route::post('agenda/update/{id}', [AgendaController::class, 'update'])->name('agenda-update');
     Route::post('/agenda/delete/{id}', [AgendaController::class, 'delete'])->name(('agenda-delete'));
-    Route::get('/agenda/{id}', [AgendaController::class, 'show'])->name('agenda-show');
+
+    //Lembaga
+    Route::get('/lembaga', [LembagaController::class, 'create'])->name('lembaga-form-create');
+    Route::post('/lembaga', [LembagaController::class, 'store'])->name('lembaga-insert');
+    Route::get('/lembaga/update/{id}', [LembagaController::class, 'edit'])->name('lembaga-form-edit');
+    Route::post('lembaga/update/{id}', [LembagaController::class, 'update'])->name('lembaga-update');
+    Route::post('/lembaga/delete/{id}', [LembagaController::class, 'delete'])->name(('lembaga-delete'));
+
 
     Route::get('/download', [DownloadController::class, 'admin'])->name('download-form');
     Route::post('/download', [DownloadController::class, 'store'])->name('download-insert');
-
-    Route::get('/lembaga', [LembagaController::class, 'lembaga'])->name('lembaga-form');
-    Route::post('/lembaga', [LembagaController::class, 'insertLembaga'])->name('lembaga-insert');
-    Route::post('/lembaga/{$id}/update', [LembagaController::class, 'updateLembaga'])->name('lembaga-update');
-    Route::post('/lembaga/{$id}/delete', [LembagaController::class, 'deleteLembaga'])->name('lembaga-delete');
 });
 
 

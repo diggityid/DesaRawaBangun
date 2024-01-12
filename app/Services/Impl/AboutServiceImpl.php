@@ -15,18 +15,8 @@ class AboutServiceImpl implements AboutService
         $this->aboutModel = new About();
     }
 
-    function check()
-    {
-        $result = DB::select('SELECT * FROM abouts');
-        if (empty($result)) {
-            return true;
-        }
-        return false;
-    }
-
     function insert(array $input)
     {
-
         $this->aboutModel->create($input);
     }
 
@@ -36,15 +26,8 @@ class AboutServiceImpl implements AboutService
         $update->update($input);
     }
 
-    function show()
+    function showAll()
     {
-        $result = $this->aboutModel->get();
-
-        return [
-            'intro' => $result[0]->intro ?? null,
-            'visi' => $result[0]->visi  ?? null,
-            'misi' => $result[0]->misi  ?? null,
-            'history' => $result[0]->history  ?? null
-        ];
+        return $this->aboutModel->all();
     }
 }

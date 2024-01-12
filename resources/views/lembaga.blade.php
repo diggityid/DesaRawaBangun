@@ -12,9 +12,11 @@
 </head>
 
 <body>
-    @component('components.header')
-    @slot('user', $user)
-    @endcomponent
+    @include('components.header', [
+    'user' => $user,
+    'add' => $user ? 'lembaga-form-create' : '',
+    'text' => $user ? 'Tambah Lembaga' : ''
+    ])
 
     <table class="table">
         <thead>
@@ -24,10 +26,24 @@
             </tr>
         </thead>
         <tbody>
+            @if(empty($content))
+            @foreach($content as $item)
             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
+                <td>
+                    <div class="container-sm"
+                        onclick="window.location.href='{{ route('lembaga-show', ['id' => $item->id]) }}'">
+                        <p>{{ $item->name }}</p>
+                        <p>{{ $item->singkatan }}</p>
+                    </div>
+                </td>
+                <td>{{ $item->alamat}}</td>
             </tr>
+            @endforeach
+            @else
+            <tr>
+                <td colspan="2">Kosong</td>
+            </tr>
+            @endif
         </tbody>
     </table>
 

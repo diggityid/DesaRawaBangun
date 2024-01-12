@@ -13,6 +13,6 @@ class Lembaga extends Model
     protected $tables = 'lembagas';
 
     protected $fillables = [
-        'name', 'image_profile', 'singkatan', 'dasar_hukum', 'alamat', 'profile', 'visi', 'misi', 'tugas', 'pengurus'
+        'name', 'images', 'singkatan', 'dasar_hukum', 'alamat', 'profile', 'visi', 'misi', 'tugas', 'pengurus'
     ];
 }

@@ -27,21 +27,20 @@ class AboutController extends Controller
 
     public function about(): Response
     {
-
-        $result = $this->aboutService->show();
+        $result = $this->aboutService->showAll();
 
         return response()->view('about', [
-            'user' => self::user(),
+            'user' => $this->user(),
             'content' => $result
         ]);
     }
 
     public function create(): Response
     {   
-        $result = $this->aboutService->show();
+        $result = $this->aboutService->showAll();
 
         return response()->view('admin.about.update', [
-            'user' => self::user(),
+            'user' => $this->user(),
             'content' => $result
         ]);
     }
@@ -56,7 +55,7 @@ class AboutController extends Controller
             'history' => 'required'
         ]);
 
-        if ($this->aboutService->check()) {
+        if (empty($this->aboutService->showAll())) {
             $this->aboutService->insert($validate);
         } else {
             $this->aboutService->update($validate);

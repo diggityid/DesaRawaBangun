@@ -38,6 +38,7 @@
                 <p>{{ $content[0]->detail }}</p>
             </div>
         </div>
+        @if($user)
         <div class="row mb-3">
             <div class="col-sm-10">
                 <a class="btn btn-primary"
@@ -48,6 +49,8 @@
                 <button class="btn btn-danger" type="submit">Hapus</button>
             </form>
         </div>
+        @endif
+        
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

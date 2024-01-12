@@ -16,6 +16,7 @@ use App\Providers\AgendaServiceProvider;
 use App\Providers\BeritaServiceProvider;
 use App\Providers\DownloadServiceProvider;
 use App\Providers\GaleriServiceProvider;
+use App\Providers\LembagaServiceProvider;
 use App\Providers\PegawaiServiceProvider;
 use App\Providers\PengumumanServiceProvider;
 
@@ -56,6 +57,7 @@ $app->register(PengumumanServiceProvider::class);
 $app->register(DownloadServiceProvider::class);
 $app->register(BeritaServiceProvider::class);
 $app->register(AgendaServiceProvider::class);
+$app->register(LembagaServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
