@@ -15,10 +15,6 @@ class GaleriServiceImpl implements GaleriService
         $this->galeriModel = new Galeri();
     }
 
-    public function check(string $id)
-    {
-    }
-
     public function insert(array $user)
     {
         $this->galeriModel->create($user);
@@ -31,9 +27,7 @@ class GaleriServiceImpl implements GaleriService
 
     public function showAll()
     {
-        $result = $this->galeriModel->all();
-
-        return $result;
+        return $this->galeriModel->all();
     }
 
     public function show(string $id)

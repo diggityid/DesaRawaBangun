@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Pengumuman extends Model
+class Agenda extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $tables = 'pengumumen';
+    protected $tables = 'agendas';
 
     protected $fillable = [
-      'title', 'images', 'detail'   
+      'title', 'images', 'location', 'start', 'finish', 'detail'   
     ];
 }

@@ -4,19 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Services\PengumumanService;
-use Illuminate\Http\RedirectResponse;
+use App\Services\BeritaService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 
-class PengumumanController extends Controller
+class BeritaController extends Controller
 {
+    private BeritaService $beritaService;
 
-    private PengumumanService $pengumumanService;
-
-    public function __construct(PengumumanService $pengumumanService)
+    public function __construct(BeritaService $beritaService)
     {
-        $this->pengumumanService = $pengumumanService;
+        $this->beritaService = $beritaService;
     }
 
     private function user()
@@ -26,11 +25,11 @@ class PengumumanController extends Controller
         return $user;
     }
 
-    public function pengumuman(): Response
+    public function berita(): Response
     {
-        $result = $this->pengumumanService->showAll();
+        $result = $this->beritaService->showAll();
 
-        return response()->view('pengumuman', [
+        return response()->view('berita', [
             'user' => $this->user(),
             'content' => $result
         ]);
@@ -38,7 +37,7 @@ class PengumumanController extends Controller
 
     public function create(): Response
     {
-        return response()->view('admin.pengumuman.create', [
+        return response()->view('admin.berita.create', [
             'user' => $this->user()
         ]);
     }
@@ -52,19 +51,19 @@ class PengumumanController extends Controller
         ]);
 
         if ($request->file('images')) {
-            $validation['images'] = $request->file('images')->store('post-images-pengumuman');
+            $validation['images'] = $request->file('images')->store('post-images-berita');
         }
 
-        $this->pengumumanService->insert($validation);
+        $this->beritaService->insert($validation);
 
-        return redirect()->action([PengumumanController::class, 'pengumuman']);
+        return redirect()->action([BeritaController::class, 'berita']);
     }
 
     public function edit(string $id): Response
     {
-        $result = $this->pengumumanService->show($id);
+        $result = $this->beritaService->show($id);
 
-        return response()->view('admin.pengumuman.update', [
+        return response()->view('admin.berita.update', [
             'user' => $this->user(),
             'content' => $result
         ]);
@@ -83,26 +82,26 @@ class PengumumanController extends Controller
                 Storage::delete($request->input('oldImage'));
             }
 
-            $validation['images'] = $request->file('images')->store('post-images-pengumuman');
+            $validation['images'] = $request->file('images')->store('post-images-berita');
         }
 
-        $this->pengumumanService->update($validation, $id);
+        $this->beritaService->update($validation, $id);
 
-        return redirect()->action([PengumumanController::class, 'pengumuman']);
+        return redirect()->action([BeritaController::class, 'berita']);
     }
 
     public function delete(string $id): RedirectResponse
     {
-        $this->pengumumanService->remove($id);
+        $this->beritaService->remove($id);
 
-        return redirect()->action([PengumumanController::class, 'pengumuman']);
+        return redirect()->action([BeritaController::class, 'berita']);
     }
 
     public function show(string $id): Response
     {
-        $result = $this->pengumumanService->show($id);
+        $result = $this->beritaService->show($id);
 
-        return response()->view('selengkapnya.pengumuman', [
+        return response()->view('selengkapnya.berita', [
             'user' => $this->user(),
             'content' => $result
         ]);

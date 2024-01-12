@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-interface PengumumanService
+interface AgendaService
 {
     public function insert(array $user);
     public function update(array $user, string $id);

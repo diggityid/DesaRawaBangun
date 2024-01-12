@@ -4,7 +4,6 @@ namespace App\Services;
 
 interface GaleriService
 {
-    public function check(string $id);
     public function insert(array $user);
     public function update(array $user, string $id);
     public function showAll();

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-interface PengumumanService
+interface BeritaService
 {
     public function insert(array $user);
     public function update(array $user, string $id);

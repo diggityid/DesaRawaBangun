@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pengumuman</title>
+    <title>Berita</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -23,8 +23,10 @@
 
 <body>
 
-    @include('components.header', ['user' => $user, 'add' => $user ? 'pengumuman-form-create' : '', 'text' => $user ?
-    'Tambah' : ''])
+    @include('components.header', [
+        'user' => $user, 
+        'add' => $user ? 'berita-form-create' : '', 
+        'text' => $user ? 'Buat Berita' : ''])
 
     <h3>Pengumuman</h3>
 
@@ -55,16 +57,16 @@
                                 <td class="limited-paragraph">{{ $item->detail }}</td>
                             </tr>
                             <tr>
-                                <td><a class="btn btn-info" href="{{ route('pengumuman-show', ['id' => $item->id]) }}">Lihat Selengkapnya</a>
+                                <td><a class="btn btn-info" href="{{ route('berita-show', ['id' => $item->id]) }}">Lihat Selengkapnya</a>
                                 </td>
                             </tr>
                             @if($user)
                             <tr>
                                 <td><a class="btn btn-primary"
-                                        href="{{ route('pengumuman-form-edit', ['id' => $item->id]) }}">Ubah</a>
+                                        href="{{ route('berita-form-edit', ['id' => $item->id]) }}">Ubah</a>
                                 </td>
                                 <td>
-                                    <form action="{{ route('pengumuman-delete', ['id' => $item->id]) }}" method="post">
+                                    <form action="{{ route('berita-delete', ['id' => $item->id]) }}" method="post">
                                         @csrf
                                         <button class="btn btn-danger" type="submit">Hapus</button>
                                     </form>

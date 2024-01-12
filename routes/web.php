@@ -1,8 +1,12 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\DemografisController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\GeografisController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LembagaController;
 use App\Http\Controllers\PegawaiController;
@@ -25,11 +29,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/about', [AboutController::class, 'about'])->name('about');
 Route::get('/perangkat-desa', [PegawaiController::class, 'perangkat'])->name('perangkat-desa');
-Route::get('pegawai/{id}', [PegawaiController::class, 'pegawai'])->name('pegawai');
+Route::get('/pegawai/{id}', [PegawaiController::class, 'pegawai'])->name('pegawai');
 Route::get('/pengumuman', [PengumumanController::class, 'pengumuman'])->name('pengumuman');
 Route::get('/download', [DownloadController::class, 'download'])->name('download');
 Route::get('/galeri', [GaleriController::class, 'galeri'])->name('galeri');
 Route::get('/lembaga', [LembagaController::class, 'lembaga'])->name('lembaga');
+Route::get('/berita', [BeritaController::class, 'berita'])->name('berita');
+Route::get('/agenda', [AgendaController::class, 'agenda'])->name('agenda');
+Route::get('/geografis', [GeografisController::class, 'geografis'])->name('geografis');
+Route::get('/demografis', [DemografisController::class, 'demografis'])->name('demografis');
+
 
 Route::prefix('/admin')->middleware(['auth', 'verified'])->group(function () {
     //about
@@ -49,6 +58,30 @@ Route::prefix('/admin')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/galeri/update/{id}', [GaleriController::class, 'edit'])->name('galeri-form-edit');
     Route::post('/galeri/update/{id}', [GaleriController::class, 'update'])->name('galeri-update');
     Route::post('/galeri/delete/{id}', [GaleriController::class, 'delete'])->name('galeri-delete');
+
+    //Pengumuman
+    Route::get('/pengumuman', [PengumumanController::class, 'create'])->name('pengumuman-form-create');
+    Route::post('/pengumuman', [PengumumanController::class, 'store'])->name('pengumuman-insert');
+    Route::get('/pengumuman/update/{id}', [PengumumanController::class, 'edit'])->name('pengumuman-form-edit');
+    Route::post('pengumuman/update/{id}', [PengumumanController::class, 'update'])->name('pengumuman-update');
+    Route::post('/pengumuman/delete/{id}', [PengumumanController::class, 'delete'])->name(('pengumuman-delete'));
+    Route::get('/pengumuman/{id}', [PengumumanController::class, 'show'])->name('pengumuman-show');
+
+    //Berita
+    Route::get('/berita', [BeritaController::class, 'create'])->name('berita-form-create');
+    Route::post('/berita', [BeritaController::class, 'store'])->name('berita-insert');
+    Route::get('/berita/update/{id}', [BeritaController::class, 'edit'])->name('berita-form-edit');
+    Route::post('berita/update/{id}', [BeritaController::class, 'update'])->name('berita-update');
+    Route::post('/berita/delete/{id}', [BeritaController::class, 'delete'])->name(('berita-delete'));
+    Route::get('/berita/{id}', [BeritaController::class, 'show'])->name('berita-show');
+
+    //Agenda
+    Route::get('/agenda', [AgendaController::class, 'create'])->name('agenda-form-create');
+    Route::post('/agenda', [AgendaController::class, 'store'])->name('agenda-insert');
+    Route::get('/agenda/update/{id}', [AgendaController::class, 'edit'])->name('agenda-form-edit');
+    Route::post('agenda/update/{id}', [AgendaController::class, 'update'])->name('agenda-update');
+    Route::post('/agenda/delete/{id}', [AgendaController::class, 'delete'])->name(('agenda-delete'));
+    Route::get('/agenda/{id}', [AgendaController::class, 'show'])->name('agenda-show');
 
     Route::get('/download', [DownloadController::class, 'admin'])->name('download-form');
     Route::post('/download', [DownloadController::class, 'store'])->name('download-insert');

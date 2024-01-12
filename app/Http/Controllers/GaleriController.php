@@ -18,7 +18,7 @@ class GaleriController extends Controller
         $this->galeriService = $galeriService;
     }
 
-    public function user()
+    private function user()
     {
         $user = Auth::user();
 

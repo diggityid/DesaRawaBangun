@@ -18,7 +18,7 @@ class AboutController extends Controller
         $this->aboutService = $aboutService;
     }
 
-    public function user()
+    private function user()
     {
         $user = Auth::user();
 

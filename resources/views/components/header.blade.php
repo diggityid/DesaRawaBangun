@@ -19,8 +19,8 @@
                         <li><a class="dropdown-item" href="{{ route('about') }}">Tentang Kami</a></li>
                         <li><a class="dropdown-item" href="#">Visi & Misi</a></li>
                         <li><a class="dropdown-item" href="#">Sejarah Desa</a></li>
-                        <li><a class="dropdown-item" href="#">Geografis Desa</a></li>
-                        <li><a class="dropdown-item" href="#">Demografis Desa</a></li>
+                        <li><a class="dropdown-item" href="{{ route('geografis') }}">Geografis Desa</a></li>
+                        <li><a class="dropdown-item" href="{{ route('demografis') }}">Demografis Desa</a></li>
                     </ul>
                 </li>
             </ul>
@@ -47,9 +47,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ route('pengumuman' )}}">Pengumuman</a></li>
-                        <li><a class="dropdown-item" href="#">Agenda Desa</a></li>
+                        <li><a class="dropdown-item" href="{{ route('agenda') }}">Agenda Desa</a></li>
                         <li><a class="dropdown-item" href="{{ route('galeri') }}">Galeri Desa</a></li>
-                        <li><a class="dropdown-item" href="#">Berita Desa</a></li>
+                        <li><a class="dropdown-item" href="{{ route('berita') }}">Berita Desa</a></li>
                         <li><a class="dropdown-item" href="{{ route('download') }}">Download</a></li>
                     </ul>
                 </li>
@@ -61,7 +61,7 @@
                 <ul class="navbar-nav me-2">
                     @if(isset($add))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route($add) }}">{{ $text }} Data</a>
+                        <a class="nav-link" href="{{ route($add) }}">{{ $text }}</a>
                     </li>
                     @endif
 

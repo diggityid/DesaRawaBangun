@@ -66,7 +66,7 @@
             </div>
 
             <div class="row mb-3">
-                <label for="riyawat_studi" class="col-sm-2 col-form-label">Pendidikan</label>
+                <label for="riwayat_studi" class="col-sm-2 col-form-label">Pendidikan</label>
                 <div class="col-sm-10">
                     <textarea class="form-control @error('riwayat_studi') is-invalid @enderror" id="riwayat_studi" name="riwayat_studi"
                         rows="3" value="{{ old('riwayat_studi') }}"></textarea>
