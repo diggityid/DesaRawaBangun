@@ -13,7 +13,12 @@
 </head>
 
 <body>
-    @include('components.header', ['user' => $user, 'add' => $user ? 'pegawai-form-create' : '', 'text' => 'Tambah'])
+    @include('components.header', [
+    'user' => $user,
+    'add' => $user ? 'pegawai-form-create' : '',
+    'text' => 'Tambah'
+    ])
+
     <h5 class="card-title m-5">{{ $content[0]->name ?? null }}</h5>
     <div class="card mb-3 m-5" style="max-width: 540px;">
         <div class="row g-0">

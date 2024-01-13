@@ -23,8 +23,10 @@
 
 <body>
 
-    @include('components.header', ['user' => $user, 'add' => $user ? 'pengumuman-form-create' : '', 'text' => $user ?
-    'Tambah' : ''])
+    @include('components.header', [
+    'user' => $user,
+    'add' => $user ? 'agenda-form-create' : '', 'text' => $user ?
+    'Buat Agenda' : ''])
 
     <h3>Agenda Desa</h3>
 
@@ -55,7 +57,9 @@
                                 <td class="limited-paragraph">{{ $item->detail }}</td>
                             </tr>
                             <tr>
-                                <td><a class="btn btn-info" href="{{ route('pengumuman-show', ['id' => $item->id]) }}">Lihat Selengkapnya</a>
+                                <td><a class="btn btn-info"
+                                        href="{{ route('pengumuman-show', ['id' => $item->id]) }}">Lihat
+                                        Selengkapnya</a>
                                 </td>
                             </tr>
                             @if($user)

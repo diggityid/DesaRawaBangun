@@ -39,7 +39,7 @@ class PegawaiController extends Controller
     {
         $result = $this->pegawaiService->show($id);
 
-        return response()->view('pegawai', [
+        return response()->view('selengkapnya.pegawai', [
             'user' => $this->user(),
             'content' => $result
         ]);
