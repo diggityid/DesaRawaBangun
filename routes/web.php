@@ -66,7 +66,7 @@ Route::prefix('/admin')->middleware(['auth', 'verified'])->group(function () {
     Route::post('/pegawai', [PegawaiController::class, 'store'])->name('pegawai-insert');
     Route::get('/pegawai/update/{id}', [PegawaiController::class, 'edit'])->name('pegawai-form-edit');
     Route::post('/pegawai/update/{id}', [PegawaiController::class, 'update'])->name('pegawai-update');
-    route::post('/pegawai/delete/{id}', [PegawaiController::class, 'delete'])->name('pegawai-delete');
+    Route::post('/pegawai/delete/{id}', [PegawaiController::class, 'delete'])->name('pegawai-delete');
 
     //Galeri
     Route::get('/galeri', [GaleriController::class, 'create'])->name('galeri-form-create');
